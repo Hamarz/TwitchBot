@@ -17,6 +17,9 @@ namespace Hamar.API.Plugin
 
         public void Initialize()
         {
+            if (!Directory.Exists("Plugins"))
+                Directory.CreateDirectory("Plugins");
+
             var directories = Directory.GetDirectories("Plugins");
             var files = new List<string>();
 

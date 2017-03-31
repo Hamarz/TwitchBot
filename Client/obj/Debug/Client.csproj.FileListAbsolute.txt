@@ -1,0 +1,6 @@
+C:\Users\Tuomas\Desktop\Long Time Project\Excutable\Client.exe.config
+C:\Users\Tuomas\Desktop\Long Time Project\Excutable\Client.exe
+C:\Users\Tuomas\Desktop\Long Time Project\Excutable\Client.pdb
+C:\Users\Tuomas\Desktop\Long Time Project\TwitchBot\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Tuomas\Desktop\Long Time Project\TwitchBot\Client\obj\Debug\Client.exe
+C:\Users\Tuomas\Desktop\Long Time Project\TwitchBot\Client\obj\Debug\Client.pdb

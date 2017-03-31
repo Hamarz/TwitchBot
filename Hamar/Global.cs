@@ -12,7 +12,6 @@ namespace Hamar
         public static Twitch.TwitchClient Twitch { get; private set; }
         public static PluginManager PluginManager { get; private set; }
 
-
         public static void Initialize()
         {
             Config = new ConfigManager();
@@ -23,7 +22,7 @@ namespace Hamar
             Regex = new RegexEngine();
             Twitch = new Hamar.Twitch.TwitchClient();
             PluginManager = new PluginManager();
-            if(Twitch.Connect(Config.GetString("Twitch.Username"), Config.GetString("Twitch.Password")))
+            if(Twitch.Connect(Config.GetString("Twitch.Username"), Config.GetString("Twitch.Token")))
                 PluginManager.Initialize();
 
 

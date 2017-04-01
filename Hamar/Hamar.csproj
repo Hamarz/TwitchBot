@@ -59,6 +59,8 @@
     <Compile Include="Twitch\Handlers.cs" />
     <Compile Include="Twitch\TwitchClient.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Sql\database.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

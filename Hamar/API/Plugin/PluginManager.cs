@@ -17,8 +17,13 @@ namespace Hamar.API.Plugin
 
         public void Initialize()
         {
+            Global.Logger.Log("Loading plugins...");
+
             if (!Directory.Exists("Plugins"))
+            {
+                Global.Logger.Log("No plugins folder was found, creating one now.");
                 Directory.CreateDirectory("Plugins");
+            }
 
             var directories = Directory.GetDirectories("Plugins");
             var files = new List<string>();
@@ -28,7 +33,7 @@ namespace Hamar.API.Plugin
                 Task.Run(() => CompileFromDirectory(dir));
             }
 
-
+            Global.Logger.Log("Finished loading plugins.");
         }
 
         private void CompileFromDirectory(string dir)
@@ -40,7 +45,7 @@ namespace Hamar.API.Plugin
             var types = pluginAssembly.GetTypes();
 
 
-
+            int count = 0;
             foreach(var type in types)
             {
                 if(type.IsClass && type.IsDefined(typeof(PluginAttribute), true))
@@ -50,6 +55,7 @@ namespace Hamar.API.Plugin
                     var plugin = (ChatScript)Activator.CreateInstance(type);
 
                     chatscripts.Add(attribute.Name, plugin);
+                    count++;
 
                     if (attribute.Initialize)
                     {
@@ -74,6 +80,7 @@ namespace Hamar.API.Plugin
                 }
             }
 
+            Global.Logger.Log($"{count} plugins were found and initialized..");
         }
 
         private void GetFilesFromDirectory(string directory, ref List<string> files)

@@ -51,6 +51,7 @@
     <Compile Include="API\Utils\Permission.cs" />
     <Compile Include="API\Utils\PluginAttribute.cs" />
     <Compile Include="Core\ConfigManager.cs" />
+    <Compile Include="Core\Logger.cs" />
     <Compile Include="Core\MysqlDatabase.cs" />
     <Compile Include="Core\RegexEngine.cs" />
     <Compile Include="Global.cs" />

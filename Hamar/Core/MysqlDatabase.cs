@@ -28,9 +28,10 @@ namespace Hamar.Core
             try
             {
                 connection.Open();
+                Global.Logger.Log("Database connection established.");
             }catch(MySqlException ex)
             {
-                throw ex;
+                Global.Logger.Log(ex);
             }
         }
 

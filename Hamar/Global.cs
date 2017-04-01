@@ -1,5 +1,6 @@
 ﻿using Hamar.API.Plugin;
 using Hamar.Core;
+using System;
 using System.Threading;
 
 namespace Hamar
@@ -11,9 +12,13 @@ namespace Hamar
         public static RegexEngine Regex { get; private set; }
         public static Twitch.TwitchClient Twitch { get; private set; }
         public static PluginManager PluginManager { get; private set; }
+        public static Logger Logger { get; private set; }
 
         public static void Initialize()
         {
+            Logger = new Logger();
+            new Thread(Info) { IsBackground = true }.Start();
+
             Config = new ConfigManager();
             Database = new MysqlDatabase(Config.GetString("Database.Hostname"), 
                                          Config.GetString("Database.Username"),
@@ -26,14 +31,17 @@ namespace Hamar
                 PluginManager.Initialize();
 
 
-            new Thread(Info) { IsBackground = true }.Start();
         }
 
         private static void Info()
         {
             while(true)
             {
-                Thread.Sleep(1000);
+                var p = Logger.GetLatest();
+                if (p == string.Empty || p == null)
+                    continue;
+
+                Console.WriteLine(p);
             }
         }
     }

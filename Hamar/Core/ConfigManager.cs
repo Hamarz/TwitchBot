@@ -13,6 +13,7 @@ namespace Hamar.Core
 
         public ConfigManager()
         {
+            Global.Logger.Log("Loading Configuration...");
             configproperties = new Dictionary<string, string>();
             if(!File.Exists(@"settings.cfg"))
             {
@@ -34,11 +35,13 @@ namespace Hamar.Core
                 writer.Close();
                 writer.Dispose();
 
-                throw new Exception("Config file has been created but is empty, modify settings.cfg file.");
+                Global.Logger.Log(new Exception("Config file has been created but is empty, modify settings.cfg file."));
+                return;
             }
 
             var lines = File.ReadAllLines(@"settings.cfg");
 
+            int count = 0;
             foreach(var line in lines)
             {
                 if (line.Contains("#"))
@@ -48,7 +51,10 @@ namespace Hamar.Core
                 key = line.Split('=')[0].Trim(' ');
                 value = line.Split('=')[1].Trim(' ');
                 configproperties.Add(key, value);
+                count++;
             }
+
+            Global.Logger.Log($"Configuration loaded {count} options");
         }
 
         private string GetValue(string key)
